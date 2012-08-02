@@ -152,6 +152,12 @@ LOGGING = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache'
+    }
+}
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
 AWS_ACCESS_KEY_ID = 'AKIAIK24RWNWQN7HTNTQ'
