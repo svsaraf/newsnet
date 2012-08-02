@@ -116,10 +116,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'gunicorn',
+    'storages',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,6 +151,14 @@ LOGGING = {
         },
     }
 }
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = DEFAULT_FILE_STORAGE
+AWS_ACCESS_KEY_ID = 'AKIAIK24RWNWQN7HTNTQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'svsnewsnet'
+STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
