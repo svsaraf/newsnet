@@ -5,6 +5,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+
+    (r'^$', 'app.views.index'),
+    (r'^register$', 'app.views.register'),
+    (r'^login/?$', 'app.views.login'),
+    (r'^logout/?$', 'app.views.logout'),
+
+
     # Examples:
     # url(r'^$', 'project.views.home', name='home'),
     # url(r'^project/', include('project.foo.urls')),
