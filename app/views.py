@@ -23,6 +23,18 @@ def index(request):
         context_instance = RequestContext(request)
     )
 
+def write(request):
+    # If not logged in, then go to register page
+    if not request.user_is_authenticated():
+        return register(request)
+    
+    return render_to_response("write.html", {
+            
+       },
+       context_instance = RequestContext(request)
+    )
+    
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
