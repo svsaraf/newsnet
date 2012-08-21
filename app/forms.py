@@ -32,3 +32,8 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError("Passwords did not match!")
         return match
 
+
+class PublishForm(forms.Form):
+    title = forms.CharField()
+    text = forms.CharField()
+     

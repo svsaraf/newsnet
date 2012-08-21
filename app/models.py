@@ -12,4 +12,9 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return "%s" % self.user
 
+class Article(models.Model):
+    title = models.CharField(max_length=255, null=False, default="Default title")
+    text = models.CharField(max_length=10000, null=False, default="Default text")
+    user = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
 # Create your models here.

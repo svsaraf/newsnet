@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'storages',
     'app',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -168,7 +169,7 @@ STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 import socket
-if socket.gethostname().startswith('Sanjay'):
+if socket.gethostname().startswith('wireless'):
     print "On local machine"
 else:
     print "On production machine"

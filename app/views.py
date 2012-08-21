@@ -8,32 +8,19 @@ from django.views.decorators.csrf import csrf_protect
 
 
 from app.forms import RegistrationForm
+from app.forms import PublishForm
 
 from django.contrib.auth.models import User
 from app.models import UserProfile
+from app.models import Article 
 
 def index(request):
+    articles = Article.objects
     # If not logged in, then go to register page
-	if not request.user.is_authenticated():
-		return register(request)
-
 	return render_to_response("home.html", {
-			#"form": form,
         },
         context_instance = RequestContext(request)
     )
-
-def write(request):
-    # If not logged in, then go to register page
-    if not request.user_is_authenticated():
-        return register(request)
-    
-    return render_to_response("write.html", {
-            
-       },
-       context_instance = RequestContext(request)
-    )
-    
 
 def register(request):
     if request.method == 'POST':
@@ -53,7 +40,7 @@ def register(request):
 
             up = UserProfile(user=user)
             up.save()
-
+            print user.first_name + user.last_name + " registered for the site."
             #request.session['next'] = '/'
 
             return authenticate(request, email, password)
@@ -79,8 +66,8 @@ def authenticate(request, email, password):
             next = request.session['next']
             del request.session['next']
             return redirect(next)
-
-        return redirect('/') 
+        print user.first_name + user.last_name + " logged in."
+        return redirect('/write') 
     else:
         form = RegistrationForm()
         return render_to_response("login.html", {
@@ -89,6 +76,35 @@ def authenticate(request, email, password):
             },
             context_instance = RequestContext(request)
         )
+
+@login_required
+def publish(request):
+    if not request.user.is_authenticated():
+        print "User was not authenticated to write, redirected to registration."
+        return register(request)
+    if request.method == "POST":
+        form = PublishForm(request.POST)
+        if form.is_valid():
+            formtitle = form.cleaned_data['title']
+            formtext = form.cleaned_data['text']
+            formuser = request.user
+            print formtitle
+            print formtext
+            print formuser.first_name + formuser.last_name
+            art = Article(title=formtitle, text=formtext, user=formuser)
+            art.save()
+            return redirect('/')
+        else:
+            print "SOMETHING IS WRONG"
+            return redirect('/')
+    else:
+        form = PublishForm()
+
+    return render_to_response("write.html", {
+            'form': form
+       },
+       context_instance = RequestContext(request)
+    )
         
 @login_required
 def logout(request):
@@ -101,4 +117,7 @@ def login(request):
         return authenticate(request, request.POST['email'], request.POST['password'])
     return redirect('/')
 
+def userview(request, userid):
+    print userid
+    return redirect('/') 
 # Create your views here.
