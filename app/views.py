@@ -15,9 +15,9 @@ from app.models import UserProfile
 from app.models import Article 
 
 def index(request):
-    articles = Article.objects
     # If not logged in, then go to register page
-	return render_to_response("home.html", {
+    
+    return render_to_response("home.html", {
         },
         context_instance = RequestContext(request)
     )
