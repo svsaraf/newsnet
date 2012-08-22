@@ -2,8 +2,43 @@
 <head lang="en">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
-    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/homepage.css">
+
+</head>
+<body>
+    <div class="container">
+      <div id="masthead">
+            <img id="mastheadLogo" width="360" height="54" alt="Web Op-ed" src="{{ STATIC_URL }}img/weboped.png">
+
+          <div id="registrations">
+            {% if user.is_authenticated %}
+            <a href="/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+            <a href="/logout">Logout</a>
+            {% endif %}
+          </div>
+      </div>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+            {% block content %}
+            {% endblock %}
+      </div>
+
+      
+      <hr>
+
+      <footer>
+        <p>&copy; Web Op-Ed 2012</p>
+      </footer>
+
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js">
 
     <script type="text/javascript">
 
@@ -18,15 +53,5 @@
          })();
 
     </script>
-
-</head>
-<body>
-    {% if user.is_authenticated %}
-    <a href="/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
-    <a href="/logout">Logout</a>
-    {% endif %}
-    {% block content %}
-    {% endblock %}
-
 </body>
 </html>
