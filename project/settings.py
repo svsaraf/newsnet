@@ -169,7 +169,7 @@ STATIC_URL = '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 import socket
-if socket.gethostname().startswith('wireless'):
+if socket.gethostname().startswith('wireless') or socket.gethostname().startswith('Sanjay'):
     print "On local machine"
 else:
     print "On production machine"

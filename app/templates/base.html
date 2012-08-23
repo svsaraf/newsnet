@@ -7,14 +7,19 @@
 
 </head>
 <body>
-    <div class="container">
-      <div id="masthead">
-            <img id="mastheadLogo" width="360" height="54" alt="Web Op-ed" src="{{ STATIC_URL }}img/weboped.png">
+    <div class="container" style="border: 1px solid lightgrey">
+      <div id="masthead" style="border-bottom: 1px solid lightgrey">
+          <div id="datetime">
+            <a href="#" style="float:left;">August 23, 2012</a>
+          </div>
+          <a href="/"><img id="mastheadLogo" width="360" height="54" alt="Web Op-ed" src="{{ STATIC_URL }}img/weboped.png"></a>
 
           <div id="registrations">
             {% if user.is_authenticated %}
             <a href="/user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
             <a href="/logout">Logout</a>
+            {% else %}
+            <a href="/register">Login</a>
             {% endif %}
           </div>
       </div>
@@ -24,11 +29,24 @@
             {% endblock %}
       </div>
 
-      
+      {% block whitecontent %}
+      {% endblock %}
+
+     <!-- <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-body" style="font-size:large">
+          <p>This project was built as a proof-of-concept news site with Python/Django on Heroku.</p>
+          <p>&nbsp;</p>
+          <p>It was created so that your opinions could be put directly online. When you become a writer (don't worry, it's free), you have access to the voting tallies to determine whose articles go on the front page. The fate of this online newspaper is in your hands.</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary btn-large" href="/about">Learn more &raquo;</a> &nbsp; &nbsp; &nbsp; <a class="btn btn-primary btn-large" href="/register">Sign up! &raquo;</a>
+        </div>
+      </div>
+      -->
       <hr>
 
       <footer>
-        <p>&copy; Web Op-Ed 2012</p>
+        <p>&nbsp; &copy; Web Op-Ed 2012</p>
       </footer>
 
     </div>
@@ -39,6 +57,7 @@
 
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js">
+    </script>
 
     <script type="text/javascript">
 
@@ -53,5 +72,8 @@
          })();
 
     </script>
+
+      {% block scriptcontent %}
+      {% endblock %}
 </body>
 </html>
