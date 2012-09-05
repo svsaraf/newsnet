@@ -10,7 +10,7 @@
     Incorrect username or password.
     {% endif %}
 
-    <form action="/login" method="post">
+    <form action="/login" method="post" class="standardform">
         {% csrf_token %}
         <p>
             <label for="login_email">Email:</label>
@@ -34,7 +34,7 @@
         <h3>Register:</h3>
     </div>
     <div id="create-form">
-    <form action="/register" method="post">
+    <form action="/register" method="post" class="standardform">
         {% csrf_token %}
 
         {{ form.as_p }}

@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^publish/?$', 'app.views.publish'),
     (r'^user/(\d+)/$', 'app.views.userview'),
     (r'^accounts/login/', 'app.views.login'),
+    (r'^list/(\d+)/$', 'app.views.list'),
 
     # Examples:
     # url(r'^$', 'project.views.home', name='home'),

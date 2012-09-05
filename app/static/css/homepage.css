@@ -15,7 +15,7 @@ body {
 }
 
 #mastheadLogo {
-/*	padding-left: 150px; */
+	padding-left: 15px; /* necessary for padding-right from login */
 }
 
 .hero-unit {
@@ -42,6 +42,18 @@ h4 {
 	color: #005580;
 }
 
+h5 {
+	color: #005580;
+}
+
 h6 {
 	color: #005580;
+}
+
+a {
+	color: #005580;
+}
+
+.standardform input {
+	height: 25px;
 }

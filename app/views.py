@@ -77,7 +77,6 @@ def authenticate(request, email, password):
             context_instance = RequestContext(request)
         )
 
-@login_required
 def publish(request):
     if not request.user.is_authenticated():
         print "User was not authenticated to write, redirected to registration."
@@ -120,4 +119,15 @@ def login(request):
 def userview(request, userid):
     print userid
     return redirect('/') 
+
+def list(request, pagenumber):
+    articles = Article.objects.all()
+    print articles
+    return render_to_response("list.html", {
+        'articles': articles
+        },
+        context_instance = RequestContext(request)
+    )
+
+
 # Create your views here.
