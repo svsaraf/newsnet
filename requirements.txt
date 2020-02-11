@@ -1,4 +1,4 @@
-Django==1.4.1
+Django==1.11.28
 South==0.7.6
 boto==2.2.1
 dj-database-url==0.2.1
